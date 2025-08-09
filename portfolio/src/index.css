@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Default styles - show cursor by default */
+body {
+  cursor: auto;
+}
+
+/* Only apply custom cursor behavior on devices with mouse input */
+@media (hover: hover) and (pointer: fine) {
+  /* Hide default cursor on interactive elements */
+  .cursor-target,
+  .cursor-target * {
+    cursor: none !important;
+  }
+  
+  /* Ensure form controls remain interactive */
+  .cursor-target input,
+  .cursor-target textarea,
+  .cursor-target select,
+  .cursor-target button,
+  .cursor-target [role="button"],
+  .cursor-target a {
+    cursor: none !important;
+  }
+}
+
+/* Ensure touch devices use default cursor */
+@media (hover: none) and (pointer: coarse) {
+  /* No need to set cursor: default as it's the default value */
+}
