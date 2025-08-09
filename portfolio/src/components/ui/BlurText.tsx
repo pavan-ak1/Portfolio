@@ -11,7 +11,7 @@ type BlurTextProps = {
   threshold?: number;
   rootMargin?: string;
   animationFrom?: Record<string, string | number>;
-  animationTo?: Array<Record<string, string | number>>;
+
   easing?: string;
   stepDuration?: number;
   onAnimationComplete?: () => void;
@@ -28,7 +28,6 @@ const BlurText: React.FC<BlurTextProps> = ({
   threshold = 0.1,
   rootMargin = "0px",
   animationFrom = {},
-  animationTo = [],
   easing = "easeOut",
   stepDuration = 0.35,
   onAnimationComplete,
@@ -43,6 +42,7 @@ const BlurText: React.FC<BlurTextProps> = ({
       filter: 'blur(8px)',
       y: direction === 'top' ? -20 : direction === 'bottom' ? 20 : 0,
       x: direction === 'left' ? -20 : direction === 'right' ? 20 : 0,
+      ...animationFrom, // Spread the custom animationFrom props
     };
 
     const baseTo = {
@@ -71,7 +71,7 @@ const BlurText: React.FC<BlurTextProps> = ({
         },
       }),
     } as Variants;
-  }, [direction, delay, onAnimationComplete, stepDuration]);
+  }, [direction, animationFrom, delay, onAnimationComplete, stepDuration]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
