@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import AnimatedText from '../components/ui/AnimatedText';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
