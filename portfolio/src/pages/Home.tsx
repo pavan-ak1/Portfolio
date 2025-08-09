@@ -1,6 +1,5 @@
 import AnimatedText from '../components/ui/AnimatedText';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import profilePic from '../assets/main.jpg';
 import { FiDownload } from 'react-icons/fi';
 import AboutMe from '../components/AboutMe';
@@ -9,97 +8,10 @@ import Projects from '../components/Projects';
 import Skills from '../components/Skills';
 import ContactCTA from '../components/ContactCTA';
 
-const ScrollIndicator = () => (
-  <motion.div 
-    className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center cursor-pointer z-50 sm:block hidden"
-    initial={{ y: 0 }}
-    animate={{
-      y: [0, 10, 0],
-    }}
-    transition={{ 
-      duration: 2.5,
-      repeat: Infinity,
-      repeatType: 'loop',
-      ease: 'easeInOut'
-    }}
-    onClick={() => {
-      const aboutSection = document.getElementById('about-me');
-      if (aboutSection) {
-        aboutSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }}
-  >
-    <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">Scroll to About Me</span>
-    </div>
-    <svg 
-      className="w-6 h-6 text-indigo-500 mt-1" 
-      fill="none" 
-      stroke="currentColor" 
-      viewBox="0 0 24 24" 
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        strokeWidth={2} 
-        d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-      />
-    </svg>
-  </motion.div>
-);
-
 const Home = () => {
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
-  const [hasAutoScrolled, setHasAutoScrolled] = useState(false);
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  // Handle auto-scroll when user scrolls down
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isScrolling) return;
-      
-      // Show/hide scroll indicator based on scroll position
-      setShowScrollIndicator(window.scrollY < 50);
-      
-      // Auto-scroll to about section when user scrolls down past threshold
-      if (window.scrollY > 100 && !hasAutoScrolled) {
-        setIsScrolling(true);
-        const aboutSection = document.getElementById('about-me');
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: 'smooth' });
-          setHasAutoScrolled(true);
-          
-          // Reset scrolling flag after scroll completes
-          setTimeout(() => {
-            setIsScrolling(false);
-          }, 1000);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasAutoScrolled, isScrolling]);
-
-  // Handle manual scroll to about section
-  const handleScrollToAbout = () => {
-    const aboutSection = document.getElementById('about-me');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-      setHasAutoScrolled(true);
-    }
-  };
 
   return (
     <div className="relative min-h-screen overflow-auto pt-24">
-      <AnimatePresence>
-        {showScrollIndicator && (
-          <div onClick={handleScrollToAbout}>
-            <ScrollIndicator />
-          </div>
-        )}
-      </AnimatePresence>
       <motion.section 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
