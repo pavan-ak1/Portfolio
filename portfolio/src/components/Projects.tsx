@@ -27,7 +27,7 @@ const projects = [
     technologies: ['Node.js', 'Express.js', 'MongoDB', 'JWT', 'REST API', 'Helmet'],
     github: 'https://github.com/pavan-ak1/E-Commerce-API.git',
     demo: 'https://e-commerce-api-vjeb.onrender.com',
-    image: '/ecommerce-api.jpg'
+    image: '/images/e-commerce.jpg'
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const projects = [
     technologies: ['Python', 'Flask', 'DeepFace', 'JWT', 'Docker', 'React'],
     github: 'https://github.com/pavan-ak1/Voter-Verify.git',
     demo: 'https://voter-verify.onrender.com/',
-    image: '/voter-verify.jpg'
+    image: '/images/voter.jpg'
   },
   
 ];

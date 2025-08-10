@@ -6,6 +6,16 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: 'Second Brain',
+      description: 'A knowledge management system for organizing and connecting your thoughts, ideas, and resources in a meaningful way.',
+      tags: ['React', 'TypeScript', 'Markdown', 'Graph Database', 'Tailwind CSS'],
+      category: 'web',
+      image: 'https://img.freepik.com/free-vector/brain-icon-vector-illustration_1308-140991.jpg',
+      demoUrl: '#',
+      codeUrl: '#',
+    },
+    {
+      id: 2,
       title: 'Task Manager',
       description: 'A cloud-based Task Manager web app that helps you organize, prioritize, and track your tasks with a clean and intuitive interface.',
       tags: ['React', 'Firebase', 'TypeScript', 'Tailwind CSS', 'Redux', 'Firestore'],
@@ -92,7 +102,10 @@ const Projects = () => {
             </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
-              <p className="text-gray-600 mb-4">{project.description}</p>
+              <p 
+                className="text-gray-600 mb-4"
+                dangerouslySetInnerHTML={{ __html: project.description }}
+              />
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map((tag) => (
                   <span
